@@ -1,0 +1,95 @@
+getwd()
+load(url("http://bit.ly/dasi_gss_data"))
+names(GSS)
+names(dasi_gss_data)
+names(gss)
+str(income06)
+str(gss$income06)
+summary(gss$income06)
+summary(gss$degreee)
+summary(gss$degree)
+hist(gss$income06)
+hist(10,gss$income06)
+barplot(gss$income06)
+?barplot
+?dim
+dim(gss)
+barplot(table(gss$income06))
+?barplot
+barplot(table(gss$income06),xlab="income")
+plot(gss$income06,gss$degree)
+plot(gss$income06,gss$degree,type="l")
+plot(gss$degree,gss$income06,type="l")
+gss$income06
+summary(gss$income06)
+barplot(table(gss$income06))
+barplot(table(gss$degree))
+summary(gss$degree)
+?subset
+gss
+c(gss$income06,gss$degree)
+table(gss$degree,gss$income06)
+dataset=cbind(gss$degree,gss$income06)
+dataset
+tail(dataset)
+tail(dataset,30)
+loans=read.csv("loans.csv")
+loans=read.csv("loans.csv")
+library(mice)
+set.seed(144)
+vars.for.imputation = setdiff(names(loans), "not.fully.paid")
+imputed = complete(mice(loans[vars.for.imputation]))
+loans[vars.for.imputation] = imputed
+set.seed(144)
+library(caTools)
+split=sample.split(loans$not.fully.paid,SplitRatio=0.7)
+train=subset(loans,split==TRUE)
+test=subset(loans,split==FALSE)
+mod1=glm(not.fully.paid~.,data=train,family="binomial")
+summary(mod1)
+pred1=predict(mod1,newdata=test,type="response")
+table(test$not.fully.paid,pred1>0.5)
+library(mice)
+ROCRpredTest = prediction(pred1, test$not.fully.paid)
+library(ROCU)
+library(ROCR)
+ROCRpredTest = prediction(pred1, test$not.fully.paid)
+auc = as.numeric(performance(ROCRpredTest, "auc")@y.values)
+auc
+mod2=glm(not.fully.paid~int.rate,data=train,family=binomial)
+summary(mod2)
+pred2=predict(mod2,newdata=test,type="response")
+which.max(pred2)
+pred2[5869]
+summary(pred2)
+table(pred2>0.5)
+table(test$not.fully.paid,pred2>0.5)
+nrow(pred2)
+ROCRpredTest = prediction(pred2, test$not.fully.paid)
+auc = as.numeric(performance(ROCRpredTest, "auc")@y.values)
+auc
+payback=10*exp(0.06*3)
+payback
+test$profit = exp(test$int.rate*3) - 1
+test$profit[test$not.fully.paid == 1] = -1
+which.max(test$profit)
+test$profit[1780]
+highInterest=subset(test,int.rate>=0.15)
+average(highInterest$profit)
+mean(highInterest$profit)
+table(highInterest$not.fully.paid)
+110/(110+327)
+test$predicted.risk = pred1
+highInterest=subset(test,int.rate>=0.15)
+cutoff = sort(highInterest$predicted.risk, decreasing=FALSE)[100]
+selectedLoans=subset(highInterest,predicted.risk<=cutoff)
+nrow(selectedLoans)
+mean(selected$profit)
+mean(selectedLoans$profit)
+table(selectedLoans$not.fully.paid)
+test$predicted.risk=predict(mod1,newdata=test,type="response")
+highInterest=subset(test,int.rate>=0.15)
+cutoff = sort(highInterest$predicted.risk, decreasing=FALSE)[100]
+selectedLoans=subset(highInterest,predicted.risk<=cutoff)
+mean(selectedLoans$profit)
+table(selectedLoans$not.fully.paid)

@@ -1,0 +1,496 @@
+0
+00:00:00,000 --> 00:00:00,499
+
+
+1
+00:00:00,499 --> 00:00:03,960
+So far, we've only considered optimizing the fares
+
+2
+00:00:03,960 --> 00:00:05,850
+for a single route.
+
+3
+00:00:05,850 --> 00:00:09,050
+In this video, we'll change our optimization formulation
+
+4
+00:00:09,050 --> 00:00:11,810
+to include connecting flights.
+
+5
+00:00:11,810 --> 00:00:15,850
+Now, instead of just being able to go from JFK in New York
+
+6
+00:00:15,850 --> 00:00:19,950
+to LAX in Los Angeles, let's suppose that the plane stops
+
+7
+00:00:19,950 --> 00:00:23,390
+in Dallas, at the Dallas Fort Worth airport.
+
+8
+00:00:23,390 --> 00:00:27,300
+Then passengers can fly from New York to Dallas, Dallas
+
+9
+00:00:27,300 --> 00:00:29,670
+to Los Angeles, or they can still
+
+10
+00:00:29,670 --> 00:00:34,500
+fly from New York to Los Angeles by flying through Dallas.
+
+11
+00:00:34,500 --> 00:00:37,500
+So how does our optimization problem change?
+
+12
+00:00:37,500 --> 00:00:40,030
+We now have six types of seats that we
+
+13
+00:00:40,030 --> 00:00:44,010
+can offer-- the original two types, regular and discount,
+
+14
+00:00:44,010 --> 00:00:48,620
+from New York to LA, and then two types for the new flights--
+
+15
+00:00:48,620 --> 00:00:52,760
+New York to Dallas, and Dallas to LA.
+
+16
+00:00:52,760 --> 00:00:55,780
+We know the price of each type of ticket
+
+17
+00:00:55,780 --> 00:00:59,060
+and the forecasted demand for each type of ticket.
+
+18
+00:00:59,060 --> 00:01:01,410
+We also know that we have a capacity
+
+19
+00:01:01,410 --> 00:01:05,860
+of 166 for each leg of the trip.
+
+20
+00:01:05,860 --> 00:01:08,140
+So what are our decisions now?
+
+21
+00:01:08,140 --> 00:01:09,780
+They're a number of regular seats
+
+22
+00:01:09,780 --> 00:01:14,270
+to sell for each leg of the trip and the number of discount
+
+23
+00:01:14,270 --> 00:01:15,980
+seats to sell.
+
+24
+00:01:15,980 --> 00:01:20,460
+So in total, we have six decisions to make.
+
+25
+00:01:20,460 --> 00:01:22,440
+Now, what's our objective?
+
+26
+00:01:22,440 --> 00:01:26,050
+Like before, it's to maximize the total revenue.
+
+27
+00:01:26,050 --> 00:01:29,450
+This is the sum of the price of the ticket times the number
+
+28
+00:01:29,450 --> 00:01:33,960
+of seats of that type we sell.
+
+29
+00:01:33,960 --> 00:01:37,830
+And like before, we have two types of constraints-- capacity
+
+30
+00:01:37,830 --> 00:01:40,420
+constraints and demand constraints.
+
+31
+00:01:40,420 --> 00:01:42,890
+For the capacity constraints, the airline
+
+32
+00:01:42,890 --> 00:01:46,090
+shouldn't sell more seats than the capacity of each plane.
+
+33
+00:01:46,090 --> 00:01:48,670
+We need two capacity constraints here,
+
+34
+00:01:48,670 --> 00:01:52,440
+one for the New York to Dallas leg, and one for the Dallas
+
+35
+00:01:52,440 --> 00:01:54,830
+to LA leg.
+
+36
+00:01:54,830 --> 00:01:57,370
+We also need six demand constraints,
+
+37
+00:01:57,370 --> 00:02:00,030
+one for each type of ticket.
+
+38
+00:02:00,030 --> 00:02:02,230
+The number of seats sold should not
+
+39
+00:02:02,230 --> 00:02:06,380
+exceed the forecasted demand for each type.
+
+40
+00:02:06,380 --> 00:02:09,539
+Lastly, we can't sell a negative number of seats,
+
+41
+00:02:09,539 --> 00:02:11,720
+so we have our non-negativity constraints
+
+42
+00:02:11,720 --> 00:02:14,940
+to prevent the variables from being negative.
+
+43
+00:02:14,940 --> 00:02:18,590
+Let's now go to LibreOffice and adjust our formulation
+
+44
+00:02:18,590 --> 00:02:22,020
+to solve this bigger problem.
+
+45
+00:02:22,020 --> 00:02:24,199
+In LibreOffice, go ahead and open the file
+
+46
+00:02:24,199 --> 00:02:25,490
+Week9_AirlineRM_Connecting.ods.
+
+47
+00:02:25,490 --> 00:02:30,310
+
+
+48
+00:02:30,310 --> 00:02:33,820
+In this file, I've set up our data, our decisions,
+
+49
+00:02:33,820 --> 00:02:36,800
+our objective, and our constraints.
+
+50
+00:02:36,800 --> 00:02:39,640
+Our decisions again are highlighted in yellow.
+
+51
+00:02:39,640 --> 00:02:44,830
+We have a decision for each type of seat on each flight.
+
+52
+00:02:44,830 --> 00:02:48,570
+Our objective here is the spot in blue.
+
+53
+00:02:48,570 --> 00:02:52,040
+To build our objective, we'll use the sumproduct function.
+
+54
+00:02:52,040 --> 00:02:57,510
+So type equals, and then sumproduct, and in parentheses,
+
+55
+00:02:57,510 --> 00:03:01,500
+select all six prices, type a semicolon,
+
+56
+00:03:01,500 --> 00:03:04,430
+and then select all six decisions.
+
+57
+00:03:04,430 --> 00:03:07,190
+Close the parentheses, and hit Enter.
+
+58
+00:03:07,190 --> 00:03:09,560
+We see here, like we did before, that we
+
+59
+00:03:09,560 --> 00:03:12,630
+have zero in our objective, because right now, we're
+
+60
+00:03:12,630 --> 00:03:15,400
+not selling any seats.
+
+61
+00:03:15,400 --> 00:03:17,930
+Now, let's create our constraints.
+
+62
+00:03:17,930 --> 00:03:21,380
+The first constraints are capacity constraints.
+
+63
+00:03:21,380 --> 00:03:25,950
+The first is the capacity on the leg from New York to Dallas.
+
+64
+00:03:25,950 --> 00:03:29,690
+The left hand side should be equal to the seats
+
+65
+00:03:29,690 --> 00:03:38,160
+from New York to LA, plus the seats from New York to Dallas.
+
+66
+00:03:38,160 --> 00:03:41,480
+The sign is less than or equals, and the right hand side
+
+67
+00:03:41,480 --> 00:03:45,900
+is 166, the capacity of our aircraft.
+
+68
+00:03:45,900 --> 00:03:49,030
+Now, we need to build the capacity constraint from Dallas
+
+69
+00:03:49,030 --> 00:03:50,260
+to LA.
+
+70
+00:03:50,260 --> 00:03:53,230
+The left hand side is equal to the seats from New York
+
+71
+00:03:53,230 --> 00:03:57,440
+to LA plus the seats from Dallas to LA.
+
+72
+00:03:57,440 --> 00:04:00,220
+
+
+73
+00:04:00,220 --> 00:04:02,590
+Our sign is, again, less than or equals,
+
+74
+00:04:02,590 --> 00:04:06,140
+and our right hand side is 166.
+
+75
+00:04:06,140 --> 00:04:09,940
+For the demand constraints and the non-negativity constraints,
+
+76
+00:04:09,940 --> 00:04:12,230
+because we have six of each this time,
+
+77
+00:04:12,230 --> 00:04:15,760
+we'll actually make them in a more efficient way than before.
+
+78
+00:04:15,760 --> 00:04:17,370
+So we just have a note down there
+
+79
+00:04:17,370 --> 00:04:20,630
+that we need to remember to add these constraints.
+
+80
+00:04:20,630 --> 00:04:25,110
+So now, go ahead and in the Tools menu, select Solver.
+
+81
+00:04:25,110 --> 00:04:27,660
+We need to first fill in the Target cell, which
+
+82
+00:04:27,660 --> 00:04:29,880
+should be the objective.
+
+83
+00:04:29,880 --> 00:04:33,070
+Make sure that Maximum is selected.
+
+84
+00:04:33,070 --> 00:04:39,320
+Then in the Changing cells box, select all six decisions.
+
+85
+00:04:39,320 --> 00:04:41,360
+Down in the Limiting conditions, let's now
+
+86
+00:04:41,360 --> 00:04:43,120
+build our constraints.
+
+87
+00:04:43,120 --> 00:04:45,450
+For the Cell reference column, let's start
+
+88
+00:04:45,450 --> 00:04:48,430
+by selecting the left hand side of the two capacity
+
+89
+00:04:48,430 --> 00:04:49,860
+constraints.
+
+90
+00:04:49,860 --> 00:04:52,780
+The Operator should be less than or equals,
+
+91
+00:04:52,780 --> 00:04:54,510
+and the Value should be the right hand
+
+92
+00:04:54,510 --> 00:04:58,130
+side of these two capacity constraints.
+
+93
+00:04:58,130 --> 00:05:00,840
+Now, let's make the demand constraints.
+
+94
+00:05:00,840 --> 00:05:04,880
+In Cell reference, just directly select the six decision
+
+95
+00:05:04,880 --> 00:05:06,610
+variables.
+
+96
+00:05:06,610 --> 00:05:09,350
+Make sure the Operator is less than or equals,
+
+97
+00:05:09,350 --> 00:05:13,480
+and for the Value, select the six demand constraints.
+
+98
+00:05:13,480 --> 00:05:15,662
+This was a bit easier than what we did before,
+
+99
+00:05:15,662 --> 00:05:17,120
+because we didn't have to type them
+
+100
+00:05:17,120 --> 00:05:19,420
+all out in our spreadsheet.
+
+101
+00:05:19,420 --> 00:05:21,060
+Now, let's do a similar thing for
+
+102
+00:05:21,060 --> 00:05:24,260
+the non-negativity constraints, where in Cell reference,
+
+103
+00:05:24,260 --> 00:05:26,690
+we select the six decisions.
+
+104
+00:05:26,690 --> 00:05:30,230
+The Operator this time should be greater than or equals,
+
+105
+00:05:30,230 --> 00:05:33,370
+and for the Value, just type zero.
+
+106
+00:05:33,370 --> 00:05:37,630
+Make sure in Options that the Linear Solver is selected,
+
+107
+00:05:37,630 --> 00:05:40,800
+and go ahead and hit Solve.
+
+108
+00:05:40,800 --> 00:05:44,870
+The solving result should say: "Solving successfully finished.
+
+109
+00:05:44,870 --> 00:05:48,540
+Result: 120,514".
+
+110
+00:05:48,540 --> 00:05:50,410
+This is our total revenue.
+
+111
+00:05:50,410 --> 00:05:53,090
+Go ahead and click Keep Result, and let's
+
+112
+00:05:53,090 --> 00:05:55,070
+take a look at our solution.
+
+113
+00:05:55,070 --> 00:05:57,730
+So we see here that the optimal solution
+
+114
+00:05:57,730 --> 00:06:02,240
+is to sell 80 tickets for the regular price from New
+
+115
+00:06:02,240 --> 00:06:07,240
+York to LA, zero of the discount price from New York to LA,
+
+116
+00:06:07,240 --> 00:06:11,470
+75 of the regular price from New York to Dallas,
+
+117
+00:06:11,470 --> 00:06:15,340
+11 of the discount price from New York to Dallas,
+
+118
+00:06:15,340 --> 00:06:18,580
+60 of the regular price from Dallas to LA,
+
+119
+00:06:18,580 --> 00:06:23,150
+and lastly, 26 of the discount price from Dallas to LA.
+
+120
+00:06:23,150 --> 00:06:25,550
+We saw here that we could pretty easily
+
+121
+00:06:25,550 --> 00:06:29,150
+solve a more complicated problem in LibreOffice
+
+122
+00:06:29,150 --> 00:06:32,636
+that we probably couldn't have solved as easily by inspection.
+
+123
+00:06:32,636 --> 00:06:33,136
+
+

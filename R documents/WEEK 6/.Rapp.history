@@ -1,0 +1,45 @@
+movies = read.table("movies.txt", header=FALSE, sep="|",quote="\"")
+colnames(movies) = c("ID", "Title", "ReleaseDate", "VideoReleaseDate", "IMDB", "Unknown", "Action", "Adventure", "Animation", "Childrens", "Comedy", "Crime", "Documentary", "Drama", "Fantasy", "FilmNoir", "Horror", "Musical", "Mystery", "Romance", "SciFi", "Thriller", "War", "Western")
+movies$ID = NULL
+movies$ReleaseDate = NULL
+movies$VideoReleaseDate = NULL
+movies$IMDB = NULL
+movies = unique(movies)
+table(movies$comedies)
+table(movies$Comedy)
+table(movies$Western)
+table(movies$Romance,movies$Drama)
+distances = dist(movies[2:20], method = "euclidean")
+clusterMovies = hclust(distances, method = "ward")
+clusterGroups2 = cutree(clusterMovies, k = 2)
+plot(clusterGroups2)
+clusterGroups2
+table(movies,clusterGroups2)
+subset(movies,clusterGroups==2)
+subset(movies,clusterGroups2==2)
+set=subset(movies,clusterGroups2==2)
+set(1)
+set[1]
+set[1,]
+a=[1 2;3 4]
+a=[1 3]
+a=vector(1,2)
+a=victor(1 2)
+a=vector(1 2)
+a=vector(1;2)
+a=vector(1:2)
+a=vector()
+a
+a=[1]
+a=[[1]]
+flower = read.csv("flower.csv", header=FALSE)#
+str(flower)
+flowerMatrix = as.matrix(flower)#
+str(flowerMatrix)
+flowerVector = as.vector(flowerMatrix)#
+str(flowerVector)
+nrow(flowerVector)
+flowerVector
+distance = dist(flowerVector, method = "euclidean")
+distance
+install.packages("flexclust")

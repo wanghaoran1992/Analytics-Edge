@@ -1,0 +1,173 @@
+getwd()
+load(url("http://bit.ly/dasi_gss_data"))
+names(GSS)
+names(dasi_gss_data)
+names(gss)
+str(income06)
+str(gss$income06)
+summary(gss$income06)
+summary(gss$degreee)
+summary(gss$degree)
+hist(gss$income06)
+hist(10,gss$income06)
+barplot(gss$income06)
+?barplot
+?dim
+dim(gss)
+barplot(table(gss$income06))
+?barplot
+barplot(table(gss$income06),xlab="income")
+plot(gss$income06,gss$degree)
+plot(gss$income06,gss$degree,type="l")
+plot(gss$degree,gss$income06,type="l")
+gss$income06
+summary(gss$income06)
+barplot(table(gss$income06))
+barplot(table(gss$degree))
+summary(gss$degree)
+?subset
+gss
+c(gss$income06,gss$degree)
+table(gss$degree,gss$income06)
+dataset=cbind(gss$degree,gss$income06)
+dataset
+tail(dataset)
+tail(dataset,30)
+pf(21,3,791,lower.tail=FALSE)
+4.259048e-13
+sqrt(3.4**2/18+2.7**2/18)
+pt(0.5,df=17,lower.tail=FALSE)
+download.file(url = "http://bit.ly/dasi_project_template", destfile = "dasi_project_template.Rmd")
+sqrt(0.4/0.07)
+sqrt(0.2/0.07)
+sqrt(0.2/0.4)
+(0.2/0.075)^2
+(0.2/0.075)
+sqrt(13)
+install.packages("KernSmooth")
+library(KernSmooth)
+load("/Users/haoranwang/Desktop/网络课程笔记/Data Science Track/R programming/Programming exercises-swirl/Untitled.RData")
+myData
+int(2)
+numeric(2)
+i=6
+numeric(i)
+class(i)
+? ave
+ave(1:3)
+ave(1;4)
+ave(1:4)
+GDP=read.csv("GDP.csv")
+GDP=read.csv("getdata-data-GDP.csv")
+Country=read.csv("getdata-data-EDSTATS_Country.csv")
+names(GDP)
+names(Country)
+Head(GDP)
+head(GDP)
+GDP=read.csv("getdata-data-GDP.csv")
+head(GDP)
+names(GDp)
+names(GDp)
+names(GDP)
+GDP=read.csv("getdata-data-GDP(1).csv")
+GDP=read.csv("getdata-data-GDP(1).csv")
+GDP=read.csv("getdata-data-GDP2.csv")
+head(GDP)
+GDP=read.table("getdata-data-GDP2.csv",quoto="")
+GDP=read.table("getdata-data-GDP2.csv",quote="",header=TRUE)
+GDP=read.table("getdata-data-GDP2.csv",header=TRUE)
+GDP=read.table("getdata-data-GDP2.xls",header=TRUE)
+GDP=read.table("getdata-data-GDP.xls",header=TRUE)
+GDP=read.table("GDP.xls",header=TRUE)
+library(xlsx)
+GDP=read.xlsx("GDP.xls",header=TRUE)
+GDP=read.xlsx("GDP.xls",sheetIndex=1,header=TRUE)
+head(GDP)
+sub=GDP[5:]
+sub=GDP[5:-1]
+sub=GDP[5:,]
+sub=GDP[5:,:]
+nrow(GDP)
+sub=GDP[5:330]
+GDP[5]
+GDP[n=5]
+GDP[5,:]
+GDP[5,]
+GDP[5:330,]
+GDP2=GDP[5:330,]
+head(GDP2)
+names(Country)
+merge(GDP,Country,by.x=NA.,by.y=CountryCode)
+merge(GDP2,Country,by.x=NA.,by.y=CountryCode)
+merge(GDP2,Country,by.x='NA.',by.y='CountryCode')
+newdata=merge(GDP2,Country,by.x='NA.',by.y='CountryCode')
+names(newdata)
+str(newdata$Income.Group)
+head(GDP2)
+tapply(newdata$Gross.domestic.product.2012,newdata$Income.Group)
+tapply(newdata$Gross.domestic.product.2012,newdata$Income.Group,mean)
+tapply(newdata$Gross.domestic.product.2012,newdata$Income.Group,mean,na.rm=TRUE)
+tapply(newdata$Gross.domestic.product.2012,newdata$Income.Group,mean,na.omit=TRUE)
+tapply(newdata$Gross.domestic.product.2012,newdata$Income.Group,mean(na.rm=TRUE))
+na.omit(tapply(newdata$Gross.domestic.product.2012,newdata$Income.Group,mean))
+tapply(na.omit(newdata$Gross.domestic.product.2012),newdata$Income.Group,mean)
+tapply(na.rm(newdata$Gross.domestic.product.2012),newdata$Income.Group,mean)
+sub=subset(newdata,Gross.domestic.product.2012!=NA)
+tapply(sub$Gross.domestic.product.2012,sub$Income.Group,mean)
+head(sub)
+sub
+subset
+subset(newdata,Gross.domestic.product.2012!=NA)
+subset(newdata,na.omit(Gross.domestic.product.2012))
+subs=na.omit(newdata$Gross.domestic.product.2012)
+subs
+newdata
+subs
+class(subs)
+subs=newdata$Gross.domestic.product.2012[!is.na(newdata$Gross.domestic.product.2012)]
+subs
+subss=newdata$Gross.domestic.product.2012[!is.na(newdata$Gross.domestic.product.2012)]
+subss
+subss=newdata[!is.na(newdata$Gross.domestic.product.2012)]
+newdata$Gross.domestic.product.2012[!is.na(newdata$Gross.domestic.product.2012)]
+is.na(newdata$Gross.domestic.product.2012)
+newdata[which(!is.na(newdata$Gross.domestic.product.2012))]
+which(!is.na(newdata$Gross.domestic.product.2012))
+newdata[which(!is.na(newdata$Gross.domestic.product.2012))]
+newdata[which(!is.na(newdata$Gross.domestic.product.2012)),]
+new=newdata[which(!is.na(newdata$Gross.domestic.product.2012)),]
+tapply(new$Gross.domestic.product.2012,new$Income.group,mean)
+nrow(new)
+nrow(new$Gross.domestic.product.2012)
+names(new)
+tapply(new$Gross.domestic.product.2012,new$Income.Group,mean)
+is.na(new$Income.Group)
+is.na(new$Gross.domestic.product.2012)
+tapply(new$Gross.domestic.product.2012,new$Income.Group,mean)
+mean(new$Gross.domestic.product.2012)
+mean(new$Gross.domestic.product.2012,na.rm=TRUE)
+new$Gross.domestic.product.2012=as.numeric(new$Gross.domestic.product.2012)
+tapply(new$Gross.domestic.product.2012,new$Income.Group,mean)
+mvt = read.csv("mvt.csv", stringsAsFactors=FALSE)
+mvt$Date = strptime(mvt$Date, format="%m/%d/%y %H:%M")
+mvt$Weekday = weekdays(mvt$Date)
+mvt$Hour = mvt$Date$hour
+WeekdayCounts = as.data.frame(table(mvt$Weekday))
+str(WeekdayCounts)
+library(ggplot2)
+ggplot(WeekdayCounts, aes(x=Var1, y=Freq)) + geom_line(aes(group=1),linetype=2)
+ggplot(WeekdayCounts, aes(x=Var1, y=Freq)) + geom_line(aes(group=1),alpha=0.3)
+ggplot(WeekdayCounts, aes(x=Var1, y=Freq)) + geom_line(aes(group=1))
+install.packages("maps")
+install.packages("ggmap")
+library(maps)
+library(ggmap)
+chicago = get_map(location = "chicago", zoom = 11)
+ggmap(chicago)
+ggmap(chicago) + geom_point(data = mvt[1:100,], aes(x = Longitude, y = Latitude))
+LatLonCounts = as.data.frame(table(round(mvt$Longitude,2), round(mvt$Latitude,2)))
+str(LatLonCounts)
+LatLonCounts$Long = as.numeric(as.character(LatLonCounts$Var1))
+LatLonCounts$Lat = as.numeric(as.character(LatLonCounts$Var2))
+LatLonCounts2=subset(LatLonCounts,Freq>0)
+nrow(LatLonCounts)-nrow(LatLonCounts2)
